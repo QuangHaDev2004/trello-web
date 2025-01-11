@@ -32,7 +32,9 @@ function BoardBar() {
         gap: 2,
         borderBottom: '1px solid #fff',
         paddingX: 2,
-        backgroundColor: (theme) => (theme.palette.mode === 'dark' ? '#34495e' : '#1976d2')
+        backgroundColor: (theme) => (theme.palette.mode === 'dark' ? '#34495e' : '#1976d2'),
+        overflowX: "auto",
+        overflowY: "hidden"
       }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
           <Chip
