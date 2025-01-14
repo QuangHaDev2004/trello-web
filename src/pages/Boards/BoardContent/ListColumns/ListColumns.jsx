@@ -1,10 +1,9 @@
+/* eslint-disable react/prop-types */
 import { Box, Button } from "@mui/material"
 import Column from "./Column/Column"
 import NoteAddIcon from '@mui/icons-material/NoteAdd'
 
-function ListColumns() {
-
-
+function ListColumns({ columns }) {
   return (
     <Box sx={{
       backgroundColor: "inherit",
@@ -14,18 +13,18 @@ function ListColumns() {
       overflowX: "auto",
       overflowY: "hidden"
     }}>
-      <Column />
-      <Column />
-      <Column />
+      {columns?.map(column => (
+        <Column key={column._id} column={column} />
+      ))}
 
       {/* Box add new column */}
       <Box sx={{
-         minWidth: "200px",
-         maxWidth: "200px",
-         marginX: 2,
-         backgroundColor: '#ffffff3d',
-         borderRadius: "6px",
-         height: "fit-content",
+        minWidth: "200px",
+        maxWidth: "200px",
+        marginX: 2,
+        backgroundColor: '#ffffff3d',
+        borderRadius: "6px",
+        height: "fit-content",
       }}>
         <Button
           startIcon={<NoteAddIcon />}

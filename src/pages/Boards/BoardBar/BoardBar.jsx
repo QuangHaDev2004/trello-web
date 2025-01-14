@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Avatar, AvatarGroup, Box, Button, Chip, Tooltip } from "@mui/material";
 import SpaceDashboardIcon from '@mui/icons-material/SpaceDashboard';
 import VpnLockIcon from '@mui/icons-material/VpnLock';
@@ -5,6 +6,7 @@ import AddToDriveIcon from '@mui/icons-material/AddToDrive';
 import BoltIcon from '@mui/icons-material/Bolt';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import { capitalizeFirstLetter } from '../../../utils/formater';
 
 const MENU_STYLES = {
   color: '#fff',
@@ -20,7 +22,7 @@ const MENU_STYLES = {
   }
 }
 
-function BoardBar() {
+function BoardBar({ board }) {
   return (
     <>
       <Box sx={{
@@ -39,13 +41,13 @@ function BoardBar() {
           <Chip
             sx={MENU_STYLES}
             icon={<SpaceDashboardIcon />}
-            label="Trello Board"
+            label={board?.title}
             clickable
           />
           <Chip
             sx={MENU_STYLES}
             icon={<VpnLockIcon />}
-            label="Public/Private Workspace"
+            label={capitalizeFirstLetter(board?.type)}
             clickable
           />
           <Chip

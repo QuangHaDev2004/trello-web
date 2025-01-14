@@ -1,7 +1,8 @@
+/* eslint-disable react/prop-types */
 import { Box } from "@mui/material"
 import Card from "./Card/Card"
 
-function ListCards() {
+function ListCards({cards}) {
   return (
     <Box sx={{
       padding: "0 5px",
@@ -18,7 +19,9 @@ function ListCards() {
       '&::-webkit-scrollbar-thumb': { backgroundColor: "#cde0da", },
       '&::-webkit-scrollbar-thumb:hover': { backgroundColor: "#bfc2cf" }
     }}>
-      <Card />
+      {cards?.map(card => (
+        <Card key={card._id} card={card} />
+      ))}
     </Box>
   )
 }
