@@ -3,17 +3,35 @@ import { Button, Card as MuiCard, CardActions, CardContent, CardMedia, Typograph
 import GroupIcon from '@mui/icons-material/Group';
 import CommentIcon from '@mui/icons-material/Comment';
 import AttachmentIcon from '@mui/icons-material/Attachment';
+import { useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
 
 function Card({ card }) {
+  const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
+    id: card._id,
+    data: { ...card }
+  })
+  const dndKitCartStyle = {
+    transform: CSS.Translate.toString(transform), 
+    transition,
+    opacity: isDragging ? 0.5 : undefined
+  }
+
   const showCardActions = () => {
     return !!card?.memberIds?.length || !!card?.comments?.length || !!card?.attachments?.length;
   }
 
   return (
-    <MuiCard sx={{
-      cursor: "pointer",
-      overflow: "unset"
-    }}>
+    <MuiCard
+      ref={setNodeRef}
+      style={dndKitCartStyle}
+      {...attributes}
+      {...listeners}
+      sx={{
+        cursor: "pointer",
+        overflow: "unset"
+      }}
+    >
       {card?.cover &&
         <CardMedia
           sx={{ height: 140 }}
